@@ -4,7 +4,8 @@ RUN \
     apk add --update git \
     && rm -rf /var/cache/apk/*
 
-COPY src/ requirements.txt /opt/
+COPY src/ /opt/
+COPY requirements.txt /opt/
 
 RUN pip install -r /opt/requirements.txt
 
