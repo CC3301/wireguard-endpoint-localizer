@@ -6,7 +6,7 @@ class WGDC:
     def __init__(self, prom_url, prom_query, geo_api_url):
         self.result = []
         self.prometheus_url = prom_url
-        self.prometheus_query = prom_query
+        self.prometheus_query = json.loads(prom_query)
         self.geo_api_url = geo_api_url
 
     def fetch(self):

@@ -1,5 +1,4 @@
 import time
-from datetime import datetime, timedelta
 from prometheus_client import PLATFORM_COLLECTOR
 from prometheus_client import PROCESS_COLLECTOR
 from prometheus_client import start_http_server
@@ -7,6 +6,7 @@ from prometheus_client.core import CounterMetricFamily
 from prometheus_client.core import REGISTRY
 import lib.wg_data_collector as wg_data_collector
 
+import os
 
 # unregister not used metrics
 # pylint: disable=protected-access
@@ -44,7 +44,7 @@ class CollectEndpointLatLong:
         yield metric_collection
 
 if __name__ == "__main__":
-    wgdc = wg_data_collector.WGDC(prom_url="http://prometheus.fink.home", prom_query={'query': 'wireguard_peer_info'}, geo_api_url="https://json.geoiplookup.io")
+    wgdc = wg_data_collector.WGDC(prom_url=os.environ['PROM_URL'], prom_query=os.environ['PROM_QUERY'], geo_api_url=os.environ['GEO_API_URL'])
     wgdc.fetch()
     print("Started fetching metrics")
 
