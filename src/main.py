@@ -32,7 +32,7 @@ class CollectEndpointLatLong:
         """
         result = self.wgdatacollector.result
         metric_collection = CounterMetricFamily(
-            "wireguard_geo_location_test",
+            "wireguard_geo_location",
             "GEO-IP Location from connected endpoints",
             labels=["public_key", "latitude", "longitude", "endpoint", "isp"]
         )
